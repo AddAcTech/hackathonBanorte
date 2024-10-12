@@ -15,7 +15,7 @@ const {DocumentProcessorServiceClient} =
 // const client = new DocumentProcessorServiceClient({apiEndpoint: 'eu-documentai.googleapis.com'});
 const client = new DocumentProcessorServiceClient();
 
-async function quickstart() {
+async function DocumentAI(file) {
   // The full resource name of the processor, e.g.:
   // projects/project-id/locations/location/processor/processor-id
   // You must create new processors in the Cloud Console first
@@ -65,4 +65,7 @@ async function quickstart() {
     const paragraphText = getText(paragraph.layout.textAnchor);
     console.log(`Paragraph text:\n${paragraphText}`);
   }
+
 }
+
+export default DocumentAI

@@ -1,9 +1,9 @@
-
+import DocumentAI from "../api/documentAI.js"; 
 
 export const processDocument = async (req, res) => {
     console.log("hola")
-    const pp = "Inicio de sesion exitoso"
+    const processedDocument = DocumentAI()
     res.json({
-        message: pp,
+        message: body,
     })
 };

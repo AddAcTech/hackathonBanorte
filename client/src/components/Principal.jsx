@@ -53,9 +53,9 @@ function Principal() {
           </div>
         </section>
       </main>
-      <footer className="bg-banorte-gray text-white p-4">
+      {/* <footer className="bg-banorte-gray text-white p-4">
         <p className="text-sm md:text-base lg:text-lg">© 2023 Mi Página Web</p>
-      </footer>
+      </footer> */}
     </div>
   );
 }

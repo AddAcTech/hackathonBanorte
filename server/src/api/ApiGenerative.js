@@ -31,13 +31,12 @@ const generativeModel = vertex_ai.preview.getGenerativeModel({
     }
   ],
 });
-
-const text1 = {text: `Whit the next information in the json file, generate a financial plan and give me recomendations about my finances considering de tables of transactions:`};
+const pront = {text: 'Hola, ¿cómo estás?'};
 
 async function generateContent() {
   const req = {
     contents: [
-      {role: 'user', parts: [text1]}
+      {role: 'user', parts: [pront]}
     ],
   };
 

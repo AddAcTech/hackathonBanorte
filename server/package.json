@@ -2,7 +2,6 @@
   "name": "practica2",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
@@ -13,7 +12,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< Updated upstream
     "@google-cloud/documentai": "^8.11.0",
+=======
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+    "@google-cloud/documentai": "^8.11.0",
+=======
+    "@google-cloud/vertexai": "^1.8.1",
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -22,5 +32,6 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
-  }
+  },
+  "description": ""
 }

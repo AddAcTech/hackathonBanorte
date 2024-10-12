@@ -1,12 +1,18 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading";
 import Example from "./components/Example";
 import Learning from "./components/Learning";
-import { BiBody } from "react-icons/bi";
 
 function App() {
   return (
     <>
-      <Learning />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Learning />} />
+          <Route path="/example" element={<Example />} />
+          <Route path="/loading" element={<Loading />} />
+        </Routes>
+      </Router>
     </>
   );
 }

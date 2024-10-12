@@ -1,6 +1,8 @@
 import LearningTask from "./LearningTask";
 import { useState } from "react";
 
+//TO DO: Renderizar informacion desde la API de openai con la clase
+
 function Learning() {
   const [isTaskCompleted, setIsTaskCompleted] = useState(false);
 

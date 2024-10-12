@@ -1,16 +1,17 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading";
-import Example from "./components/Example";
 import Learning from "./components/Learning";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
+    <Header />
       <Router>
         <Routes>
           <Route path="/" element={<Learning />} />
-          <Route path="/example" element={<Example />} />
-          <Route path="/loading" element={<Loading />} />
+          <Route path="/Loading" element={<Loading />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </Router>
     </>

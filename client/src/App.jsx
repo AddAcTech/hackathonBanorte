@@ -1,12 +1,19 @@
-import Chat from "./components/Chat";
-import Header from "./components/Header";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Loading from "./components/Loading";
+import Example from "./components/Example";
+import Learning from "./components/Learning";
 
 function App() {
   return (
-    <div className="font-bold text-3xl">
-      <Header />
-      <Chat />
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Learning />} />
+          <Route path="/example" element={<Example />} />
+          <Route path="/loading" element={<Loading />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

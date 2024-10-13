@@ -3,6 +3,6 @@ import { processDocument } from "../controllers/document.controller.js";
 
 const router = Router();
 
-router.get("/document", processDocument);
+router.post("/document", processDocument);
 
 export default router;

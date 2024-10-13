@@ -3,13 +3,14 @@ import { generateContent } from "../api/ApiGenerative.js";
 import { console } from "inspector";
 
 export const processDocument = async (req, res) => {
-    console.log(req.body)
-    const {prompt} = req.body
-    const response = await generateContent(prompt)
+    const documentPath = req.body.path
+    const processedDocument = await DocumentAI(documentPath)
+    console.log(processedDocument)
+    const response = await generateContent(processedDocument)
 
-    const processedDocument = DocumentAI()
     res.status(200).json({
-        message: processedDocument,
+        message: "Document processed successfully",
+        response:  response
     })
 };
 

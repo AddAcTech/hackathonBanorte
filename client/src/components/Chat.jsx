@@ -23,18 +23,13 @@ export default function Chat() {
     // Crear un FormData para enviar el archivo y datos adicionales
     const formData = new FormData();
     formData.append("file", pdfFile); // Archivo PDF
-    formData.append("additionalData", additionalData); // Agregar datos adicionales si es necesario
 
     try {
-      const response = await fetch(
-        "http://localhost:3000/document",
-        {
-          method: "POST",
-          body: formData,
-           // Enviamos el FormData directamente
-          // No es necesario agregar headers como "Content-Type": "multipart/form-data", fetch lo maneja automáticamente.
-        }
-      );
+      const response = await fetch("http://localhost/3000/document", {
+        method: "POST",
+        body: formData, // Enviamos el FormData directamente
+        // No es necesario agregar headers como "Content-Type": "multipart/form-data", fetch lo maneja automáticamente.
+      });
 
       if (response.ok) {
         const data = await response.json();

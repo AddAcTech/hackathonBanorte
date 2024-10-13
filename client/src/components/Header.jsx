@@ -1,8 +1,4 @@
-import {
-  Dialog,
-  DialogPanel,
-  PopoverGroup
-} from "@headlessui/react";
+import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
@@ -18,11 +14,7 @@ export default function Example() {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Banorte</span>
-            <img
-              alt="Logo Banorte"
-              src="./public/logo.png"
-              className="h-8 w-auto"
-            />
+            <img alt="Logo Banorte" src="/logo.png" className="h-8 w-auto" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -37,7 +29,7 @@ export default function Example() {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <a
-            href="/learningTask"
+            href="/learning"
             className="text-sm font-bold leading-6 text-white hover:text-black uppercase"
           >
             Mi aprendizaje
@@ -89,7 +81,7 @@ export default function Example() {
                   href="/Chat"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200 uppercase"
                 >
-                  Organiza tus finanzas 
+                  Organiza tus finanzas
                 </a>
               </div>
             </div>

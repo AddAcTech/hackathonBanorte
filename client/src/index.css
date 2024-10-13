@@ -9,3 +9,12 @@
 .title {
   @apply font-semibold text-4xl;
 }
+
+.subtitle {
+  @apply font-semibold text-2xl;
+}
+
+.cardBorder {
+  @apply bg-white rounded-lg p-6;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.09);
+}

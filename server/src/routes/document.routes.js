@@ -23,7 +23,7 @@ router.post("/document", upload.single("file"), async (req, res) => {
   // Access the uploaded file details from req.file
 
   if (req.file) {
-    const path = "C:/Users/Tonatiuh/OneDrive/Escritorio/hackathonBanorte/server/uploads/"+req.file.filename
+    const path = "./uploads/"+req.file.filename
     const prederterminado = 'A continuación se muestra un estado de cuenta del cual deberas analizar gastos, (Habla como una conversacion normal y fluida). Estado de cuenta : '
     const formato = 'Sigue el siguiente formato, no utilices markdown en toda la respuesta. \n' + 'Nombre: \nSaldo inicial \nSaldo final: \nIngresos: \nGastos: \nRendimientos: '
     + '\nPlan de ahorro recomendado: \nObservaciones: (Aquí revisa si tienes gastos innecesarios o si puedes ahorrar más) '

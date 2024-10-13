@@ -4,23 +4,54 @@ import { Button } from "@headlessui/react";
 
 export default function Chat() {
   const [pdfFile, setPdfFile] = useState(null);
+  const [pdfFileUrl, setPdfFileUrl] = useState(null); // Para mostrar el PDF
   const [chat, setChat] = useState("");
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setPdfFile(URL.createObjectURL(file));
+      setPdfFile(file); // Guardamos el archivo original
+      setPdfFileUrl(URL.createObjectURL(file)); // Creamos la URL para mostrar el PDF
     }
   };
 
-  const handleSubmit = (e) => {
-    setChat(e);
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file); // Usamos el archivo original
+      reader.onload = () => resolve(reader.result.split(",")[1]); // Solo la parte base64
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  const handleSubmit = async () => {
+    if (!pdfFile) {
+      console.log('No file selected');
+      return;
+    }
+
+    try {
+      const base64File = await convertToBase64(pdfFile);
+
+      const response = await fetch("http://localhost:3000/document", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ file: base64File }), // Enviar el archivo en base64
+      });
+
+      const data = await response.json();
+      console.log(data); // Manejar la respuesta del servidor
+    } catch (error) {
+      console.error("Error al enviar el archivo:", error);
+    }
   };
 
   return (
     <>
       <main className="max-w-7xl mx-auto py-20 grid md:grid-cols-2 gap-8">
-        {pdfFile === null ? (
+        {pdfFileUrl === null ? ( // Mostramos el PDF usando la URL
           <div className="flex flex-col items-center justify-center p-5">
             <label
               htmlFor="pdf-upload"
@@ -47,7 +78,7 @@ export default function Chat() {
         ) : (
           <div>
             <iframe
-              src={pdfFile}
+              src={pdfFileUrl}
               width="100%"
               height="500"
               className="mt-4 border rounded-lg"
@@ -56,7 +87,10 @@ export default function Chat() {
             <div className="grid md:grid-cols-2">
               <button
                 className="bg-banorte-gray p-3 uppercase text-white font-bold mt-10 rounded-md m-10"
-                onClick={() => setPdfFile(null)}
+                onClick={() => {
+                  setPdfFile(null);
+                  setPdfFileUrl(null);
+                }}
               >
                 Cancelar
               </button>
@@ -69,7 +103,7 @@ export default function Chat() {
             </div>
           </div>
         )}
-        <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-6">
+        <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-6 max-w-lg md:max-w-full mx-auto">
           <h2 className="text-2xl font-bold text-gray-800">Chat</h2>
           <Box
             component="form"

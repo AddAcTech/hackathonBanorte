@@ -52,8 +52,8 @@ export default function Chat() {
   };
 
   return (
-    <>
-      <main className="max-w-7xl mx-auto py-20 grid md:grid-cols-2 gap-8">
+    <div className="flex items-center justify-center">
+      <main className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
         {pdfFileUrl === null ? (
           <div className="flex flex-col items-center justify-center p-5">
             <label
@@ -97,7 +97,7 @@ export default function Chat() {
             />
             <div className="grid md:grid-cols-2">
               <button
-                className="bg-gray-500 p-3 uppercase text-white font-bold mt-10 rounded-md m-10"
+                className="bg-gray-500 p-3 uppercase text-white font-bold rounded-md m-5"
                 onClick={() => {
                   setPdfFile(null);
                   setPdfFileUrl(null);
@@ -106,7 +106,7 @@ export default function Chat() {
                 Cancelar
               </button>
               <button
-                className="bg-red-500 p-3 uppercase text-white font-bold mt-10 rounded-md m-10"
+                className="bg-red-500 p-3 uppercase text-white font-bold rounded-md m-5"
                 onClick={handleSubmit}
                 disabled={loading} // Deshabilitamos el botón mientras esperamos la respuesta
               >
@@ -122,37 +122,39 @@ export default function Chat() {
             <p>Es necesario subir un PDF para recibir una respuesta</p>
           </div>
         ) : (
-          <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-6 md:max-w-full mx-auto max-w-full  overflow-y-scroll">
+          <div className="p-5 rounded-lg space-y-6 md:max-w-full m-auto">  
             <h2 className="text-2xl font-bold text-gray-800">Chat</h2>
-            <Box
-              component="form"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                "& > :not(style)": { m: 1 },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                id="outlined-basic"
-                label="¿En qué puedo ayudarte?"
-                variant="outlined"
-                sx={{ width: "65ch" }}
-                value={additionalData}
-                onChange={(e) => setAdditionalData(e.target.value)}
-              />
-            </Box>
+            <div className="overflow-y-scroll h-96 ">
+              {serverResponse && (
+                <div className="mt-4 p-3 border border-green-300 bg-green-100 rounded-md">
+                  <h3 className="font-bold">Respuesta del servidor:</h3>
+                  <p>Título: {serverResponse}</p>
+                </div>
+              )}
+              <Box
+                component="form"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  "& > :not(style)": { m: 1 },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+              </Box>
+            </div>
+                <TextField
+                  id="outlined-basic"
+                  label="¿En qué puedo ayudarte?"
+                  variant="outlined"
+                  sx={{ width: "100%" }}
+                  value={additionalData}
+                  onChange={(e) => setAdditionalData(e.target.value)}
+                />
 
-            {serverResponse && (
-              <div className="mt-4 p-3 border border-green-300 bg-green-100 rounded-md">
-                <h3 className="font-bold">Respuesta del servidor:</h3>
-                <p>Título: {serverResponse}</p>
-              </div>
-            )}
           </div>
         )}
       </main>
-    </>
+    </div>
   );
 }

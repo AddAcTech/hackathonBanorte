@@ -5,21 +5,20 @@
 const projectId = '220088580382';
 const location = 'us'; // Format is 'us' or 'eu'
 const processorId = '3ba072cd17f04d76'; // Create processor in Cloud Console
-const filePath = './src/api/tona_estado.pdf'
 
 import {DocumentProcessorServiceClient} from "@google-cloud/documentai"
 import {promises as fs} from 'fs'
 
 const client = new DocumentProcessorServiceClient();
 
-async function DocumentAI() {
+async function DocumentAI(file) {
   const name = `projects/${projectId}/locations/${location}/processors/${processorId}`;
 
   // Read the file into memory.
-  const imageFile = await fs.readFile(filePath);
+  //const imageFile = await fs.readFile(path);
 
   // Convert the image data to a Buffer and base64 encode it.
-  const encodedImage = Buffer.from(imageFile).toString('base64');
+  //const encodedImage = Buffer.from(imageFile).toString('base64');
 
   const request = {
     name,

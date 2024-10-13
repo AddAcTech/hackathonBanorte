@@ -20,7 +20,8 @@ export const processDocument = async (req, res) => {
 
     const processedDocument = DocumentAI()
     res.status(200).json({
-        message: processedDocument,
+        message: "Document processed successfully",
+        response:  response
     })
 };
 

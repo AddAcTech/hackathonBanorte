@@ -23,7 +23,7 @@ async function DocumentAI(file) {
   const request = {
     name,
     rawDocument: {
-      content: encodedImage,
+      content: file,
       mimeType: 'application/pdf',
     },
   };

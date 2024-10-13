@@ -3,8 +3,8 @@ import { generateContent } from "../api/ApiGenerative.js";
 import { console } from "inspector";
 
 export const processDocument = async (req, res) => {
-    const documentPath = req.body.path
-    const processedDocument = await DocumentAI(documentPath)
+    const document = req.body
+    const processedDocument = await DocumentAI(document)
     console.log(processedDocument)
     const response = await generateContent(processedDocument)
 

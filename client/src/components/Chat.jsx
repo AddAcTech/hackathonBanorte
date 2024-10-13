@@ -38,7 +38,7 @@ export default function Chat() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ file: base64File }), // Enviar el archivo en base64
+        body: base64File, // Enviar el archivo en base64
       });
 
       const data = await response.json();

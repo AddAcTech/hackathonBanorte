@@ -26,7 +26,7 @@ export default function Chat() {
 
     try {
       const response = await fetch(
-        "http://localhost/3000/document",
+        "http://localhost:3000/document",
         {
           method: "POST",
           body: formData, // Enviamos el FormData directamente

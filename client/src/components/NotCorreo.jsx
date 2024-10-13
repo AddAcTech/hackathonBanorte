@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { send } from '@emailjs/browser';
-// import { send } from '@emailjs/browser';
 
 const NotCorreo = () => {
   const [email, setEmail] = useState('');

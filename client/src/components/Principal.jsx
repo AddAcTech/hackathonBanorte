@@ -66,7 +66,9 @@ function Principal() {
           </div>
           <div className="w-11/12 sm:w-1/2 mb-8 p-4 mx-4 flex flex-col cardBorder flex-grow">
             <p className="text-center subtitle">Prueba generacion de pdf</p>
-            <PdfGenerator />
+            <div className="text-center my-4">
+              <PdfGenerator />
+            </div>
           </div>
         </section>
       </main>

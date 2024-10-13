@@ -40,7 +40,7 @@ export default function Chat() {
 
       if (response.ok) {
         const data = await response.json();
-        setServerResponse(data.consejo.toString()); 
+        setServerResponse(data.consejo.toString());
       } else {
         console.error("Error en la respuesta del servidor");
       }
@@ -55,7 +55,7 @@ export default function Chat() {
     <div className="flex items-center justify-center">
       <main className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
         {pdfFileUrl === null ? (
-          <div className="flex flex-col items-center justify-center p-5">
+          <div className="flex flex-col items-center justify-center p-5 " style={{height:'calc(100vh - 80px)'}}>
             <label
               htmlFor="pdf-upload"
               className="block text-lg font-medium text-gray-700 mb-3"
@@ -117,12 +117,14 @@ export default function Chat() {
         )}
 
         {pdfFileUrl === null ? (
-          <div className="p-5 rounded-lg space-y-6 md:max-w-full max-w-full">
-            <h2 className="text-2xl font-bold text-gray-800">Chat</h2>
-            <p>Es necesario subir un PDF para recibir una respuesta</p>
+          <div className="flex flex-col items-center justify-center p-5 " style={{height:'calc(100vh - 80px)'}}>
+            <div className="p-5 rounded-lg space-y-6 md:max-w-full max-w-full">
+              <h2 className="text-2xl font-bold text-gray-800">Chat</h2>
+              <p>Es necesario subir un PDF para recibir una respuesta</p>
+            </div>
           </div>
         ) : (
-          <div className="p-5 rounded-lg space-y-6 md:max-w-full m-auto">  
+          <div className="p-5 rounded-lg space-y-6 md:max-w-full m-auto">
             <h2 className="text-2xl font-bold text-gray-800">Chat</h2>
             <div className="overflow-y-scroll h-96 ">
               {serverResponse && (

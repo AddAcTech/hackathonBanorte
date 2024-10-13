@@ -43,7 +43,7 @@ export async function generateContent(prompt) {
   // Obtener todos los valores de la caché
   const cachedContent = getAllCacheValues() || "";
   // Concatenar el contenido de la caché con el nuevo prompt
-  const combinedPrompt = cachedContent ? `${cachedContent} ${prompt}` : prompt;
+  const combinedPrompt = await cachedContent ? `${cachedContent} ${prompt}` : prompt;
 
   const text1 = {text: combinedPrompt};
   const req = {

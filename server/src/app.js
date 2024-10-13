@@ -4,6 +4,7 @@ import { clearCache, printCache } from './cache.js';
 import indexRoutes from "./routes/index.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import bankStatement from "./routes/document.routes.js";
+import chat from "./routes/generative.routes.js"
 
 
 // Inicializar la caché en 0
@@ -16,5 +17,6 @@ app.use(express.json());
 app.use(indexRoutes);
 app.use(authRoutes);
 app.use(bankStatement);
+app.use(chat);
 
 export default app;

@@ -6,7 +6,6 @@ import { generateContent } from "../api/ApiGenerative.js";
 export const respuestaPrompt = async (req, res) => {
     const prompt = req.body.prompt
     const response = await generateContent(prompt)
-
     res.status(200).json({
         message: "Content generated successfully",
         response: response

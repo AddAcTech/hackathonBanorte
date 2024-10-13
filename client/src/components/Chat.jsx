@@ -1,9 +1,10 @@
-import { Box, TextField } from "@mui/material";
 import React, { useState } from "react";
+import { TextField, Box } from "@mui/material";
 
 export default function Chat() {
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfFileUrl, setPdfFileUrl] = useState(null); // Para mostrar el PDF
+  const [additionalData, setAdditionalData] = useState(""); // Por si tienes datos adicionales
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -13,34 +14,37 @@ export default function Chat() {
     }
   };
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file); // Usamos el archivo original
-      reader.onload = () => resolve(reader.result.split(",")[1]); // Solo la parte base64
-      reader.onerror = (error) => reject(error);
-    });
-  };
-
   const handleSubmit = async () => {
     if (!pdfFile) {
-      console.log('No file selected');
+      console.log("No file selected");
       return;
     }
 
+    // Crear un FormData para enviar el archivo y datos adicionales
+    const formData = new FormData();
+    formData.append("file", pdfFile); // Archivo PDF
+    formData.append("additionalData", additionalData); // Agregar datos adicionales si es necesario
+
     try {
-      const base64File = await convertToBase64(pdfFile);
+      const response = await fetch(
+        "http://localhost:3000/document",
+        {
+          method: "POST",
+          body: formData,
+           // Enviamos el FormData directamente
+          // No es necesario agregar headers como "Content-Type": "multipart/form-data", fetch lo maneja automáticamente.
+        }
+      );
 
-      const response = await fetch("http://localhost:3000/document", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ file: base64File }), // Enviar el archivo en base64
-      });
-
-      const data = await response.json();
-      console.log(data); // Manejar la respuesta del servidor
+      if (response.ok) {
+        const data = await response.json();
+        // Manejar la respuesta exitosa del servidor
+        console.log(data);
+        // Mostrar mensaje (similitud con axios .then)
+        alert(`Título: ${data.title}, Mensaje: ${data.text}`);
+      } else {
+        console.error("Error en la respuesta del servidor");
+      }
     } catch (error) {
       console.error("Error al enviar el archivo:", error);
     }
@@ -49,7 +53,7 @@ export default function Chat() {
   return (
     <>
       <main className="max-w-7xl mx-auto py-20 grid md:grid-cols-2 gap-8">
-        {pdfFileUrl === null ? ( // Mostramos el PDF usando la URL
+        {pdfFileUrl === null ? (
           <div className="flex flex-col items-center justify-center p-5">
             <label
               htmlFor="pdf-upload"
@@ -84,7 +88,7 @@ export default function Chat() {
             />
             <div className="grid md:grid-cols-2">
               <button
-                className="bg-banorte-gray p-3 uppercase text-white font-bold mt-10 rounded-md m-10"
+                className="bg-gray-500 p-3 uppercase text-white font-bold mt-10 rounded-md m-10"
                 onClick={() => {
                   setPdfFile(null);
                   setPdfFileUrl(null);
@@ -93,7 +97,7 @@ export default function Chat() {
                 Cancelar
               </button>
               <button
-                className="bg-banorte-red p-3 uppercase text-white font-bold mt-10 rounded-md m-10"
+                className="bg-red-500 p-3 uppercase text-white font-bold mt-10 rounded-md m-10"
                 onClick={handleSubmit}
               >
                 Envíar
@@ -115,9 +119,11 @@ export default function Chat() {
           >
             <TextField
               id="outlined-basic"
-              label="¿De que manera te puedo ayudar?"
+              label="Datos adicionales (si es necesario)"
               variant="outlined"
               sx={{ width: "65ch" }}
+              value={additionalData}
+              onChange={(e) => setAdditionalData(e.target.value)}
             />
           </Box>
         </div>

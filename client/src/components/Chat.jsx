@@ -4,12 +4,17 @@ import { Button } from "@headlessui/react";
 
 export default function Chat() {
   const [pdfFile, setPdfFile] = useState(null);
+  const [chat, setChat] = useState("");
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setPdfFile(URL.createObjectURL(file));
     }
+  };
+
+  const handleSubmit = (e) => {
+    setChat(e);
   };
 
   return (
@@ -49,10 +54,16 @@ export default function Chat() {
               title="PDF Viewer"
             />
             <div className="grid md:grid-cols-2">
-              <button className="bg-banorte-gray p-3 uppercase text-white font-bold mt-10 rounded-md m-10">
+              <button
+                className="bg-banorte-gray p-3 uppercase text-white font-bold mt-10 rounded-md m-10"
+                onClick={() => setPdfFile(null)}
+              >
                 Cancelar
               </button>
-              <button className="bg-banorte-red p-3 uppercase text-white font-bold mt-10 rounded-md m-10">
+              <button
+                className="bg-banorte-red p-3 uppercase text-white font-bold mt-10 rounded-md m-10"
+                onClick={handleSubmit}
+              >
                 Envíar
               </button>
             </div>
@@ -76,14 +87,6 @@ export default function Chat() {
               variant="outlined"
               sx={{ width: "65ch" }}
             />
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              className="ml-2 bg-black text-white uppercase p-3 rounded-md font-bold"
-            >
-              Enviar
-            </Button>
           </Box>
         </div>
       </main>

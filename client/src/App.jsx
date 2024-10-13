@@ -15,7 +15,6 @@ function App() {
           <Route path="/learning" element={<Learning />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/examen" element={<Examen />} />
-          <Route path="/loading" element={<Loading />} />
         </Routes>
       </Router>
     </>

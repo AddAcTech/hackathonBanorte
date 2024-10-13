@@ -14,3 +14,18 @@ export const processDocument = async (req, res) => {
     // response: response,
   });
 };
+
+export const pruebaEndpoint = async (req, res) => {
+    if (!req.file) {
+        return res.status(400).send('No file uploaded.');
+    }
+
+    // Convertir el archivo a base64
+    const base64Data = req.file.buffer.toString('base64');
+
+    // Imprimir el base64 en consola
+    console.log(base64Data);
+
+    // Responder al cliente
+    res.send('Archivo recibido y convertido a base64.');
+}

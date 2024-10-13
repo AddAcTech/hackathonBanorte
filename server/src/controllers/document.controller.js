@@ -7,9 +7,9 @@ export const processDocument = async (req, res) => {
     const {prompt} = req.body
     const response = await generateContent(prompt)
 
-    //const processedDocument = DocumentAI()
+    const processedDocument = DocumentAI()
     res.status(200).json({
-        message: processDocument,
+        message: processedDocument,
     })
 };
 

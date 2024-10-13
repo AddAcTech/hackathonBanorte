@@ -2,6 +2,7 @@ import { Router } from "express";
 import multer from "multer";
 import path from "path";
 import { promises as fs } from "fs";
+import DocumentAI from "../api/documentAI.js";
 
 const router = Router();
 
@@ -21,10 +22,11 @@ router.post("/document", upload.single("file"), async (req, res) => {
   // Access the uploaded file details from req.file
 
   if (req.file) {
-    const filePath = path.join(__dirname, "uploads", req.file.filename);
+const path = "D:/Hackathon/server/uploads/"+req.file.filename
+const response = await DocumentAI(path)
+console.log(response)
+
     try {
-      // You can perform additional processing on the uploaded file here (optional)
-      console.log(`File uploaded to: ${filePath}`);
       res.status(200).json({ message: "File uploaded successfully" });
     } catch (error) {
       console.error("Error uploading file:", error);

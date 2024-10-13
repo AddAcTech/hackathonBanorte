@@ -20,7 +20,7 @@ async function DocumentAI(path) {
   const request = {
     name,
     rawDocument: {
-      content: file.body,
+      content: encodedImage,
       mimeType: 'application/pdf',
     },
   };
@@ -54,7 +54,6 @@ async function DocumentAI(path) {
     const paragraphText = getText(paragraph.layout.textAnchor);
     documentText += paragraphText
   }
-
   return documentText
 }
 

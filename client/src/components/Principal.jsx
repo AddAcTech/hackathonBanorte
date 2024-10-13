@@ -40,15 +40,12 @@ function Principal() {
               Recomendaciones...
             </p>
             <p className="text-base md:text-lg lg:text-xl">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam dicta quia similique culpa temporibus, quos optio molestiae debitis impedit tempora mollitia soluta animi nisi ea perferendis harum quo sed earum.</p>
-            <div className="flex justify-center mt-auto">
-              <button className="main-button">Realizar analisis</button>
-            </div>
           </div>
 
           <div className="w-11/12 sm:w-1/2 mb-8 p-4 mx-4 flex flex-col cardBorder flex-grow">
             {/* Contenido adicional */}
             {/* Contenido de la segunda sub-sección */}
-            <p className="text-center subtitle">Aprendizaje</p>
+            <p className="text-center subtitle">Mi Aprendizaje</p>
             <div className="flex items-center my-4 mx-20 mb-8 border border-banorte-gray p-4">
               {/* Contenido de la clase actual */}
               <p>Clase</p>
@@ -58,11 +55,6 @@ function Principal() {
               <div className="ml-4 w-full md:w-1/4">
                 <ProgressBar progress={progress} />
               </div>
-            </div>
-            <div className="flex justify-center mt-auto">
-              <button className="main-button">
-                Continuar
-              </button>
             </div>
           </div>
         </section>

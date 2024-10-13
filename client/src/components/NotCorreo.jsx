@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import emailjs from 'emailjs-com';
+import { send } from '@emailjs/browser';
+// import { send } from '@emailjs/browser';
 
 const NotCorreo = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ const NotCorreo = () => {
       message: message,
     };
 
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_USER_ID')
+    send('service_ihlvm3w', 'template_ht5aruj', templateParams, 'z7v0C-ppBPDl5DS57')
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
       }, (err) => {

@@ -17,11 +17,8 @@ function App() {
           <Route path="/learning" element={<Learning />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/examen" element={<Examen />} />
-<<<<<<< HEAD
           <Route path="/learningTask" element={<LearningTask />} />
           <Route path="/expenseController" element={<ExpenseController />} />
-=======
->>>>>>> Alexis
         </Routes>
       </Router>
     </>

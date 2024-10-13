@@ -10,12 +10,10 @@ function App() {
     <>
     <Header />
       <Router>
-        <Header />
         <Routes>
           <Route path="/" element={<Principal />} />
           <Route path="/learning" element={<Learning />} />
           <Route path="/chat" element={<Chat />} />
-          <Route path="/" element={<Chat />} />
         </Routes>
       </Router>
     </>

@@ -3,14 +3,15 @@ import { TextField, Box } from "@mui/material";
 
 export default function Chat() {
   const [pdfFile, setPdfFile] = useState(null);
-  const [pdfFileUrl, setPdfFileUrl] = useState(null); // Para mostrar el PDF
-  const [additionalData, setAdditionalData] = useState(""); // Por si tienes datos adicionales
+  const [pdfFileUrl, setPdfFileUrl] = useState(null);
+  const [additionalData, setAdditionalData] = useState("");
+  const [serverResponse, setServerResponse] = useState(null); // Estado para almacenar la respuesta del servidor
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setPdfFile(file); // Guardamos el archivo original
-      setPdfFileUrl(URL.createObjectURL(file)); // Creamos la URL para mostrar el PDF
+      setPdfFile(file);
+      setPdfFileUrl(URL.createObjectURL(file));
     }
   };
 
@@ -20,22 +21,19 @@ export default function Chat() {
       return;
     }
 
-    // Crear un FormData para enviar el archivo y datos adicionales
     const formData = new FormData();
-    formData.append("file", pdfFile); // Archivo PDF
+    formData.append("file", pdfFile);
 
     try {
-      const response = await fetch("http://localhost/3000/document", {
+      const response = await fetch("http://localhost:3000/document", {
         method: "POST",
-        body: formData, // Enviamos el FormData directamente
-        // No es necesario agregar headers como "Content-Type": "multipart/form-data", fetch lo maneja automáticamente.
+        body: formData,
       });
 
       if (response.ok) {
         const data = await response.json();
-        // Manejar la respuesta exitosa del servidor
-        console.log(data);
-        // Mostrar mensaje (similitud con axios .then)
+        // Guardar la respuesta del servidor en el estado
+        setServerResponse(data); 
         alert(`Título: ${data.title}, Mensaje: ${data.text}`);
       } else {
         console.error("Error en la respuesta del servidor");
@@ -121,6 +119,14 @@ export default function Chat() {
               onChange={(e) => setAdditionalData(e.target.value)}
             />
           </Box>
+  
+          {serverResponse && (
+            <div className="mt-4 p-3 border border-green-300 bg-green-100 rounded-md">
+              <h3 className="font-bold">Respuesta del servidor:</h3>
+              <p>Título: {serverResponse.title}</p>
+              <p>Mensaje: {serverResponse.text}</p>
+            </div>
+          )}
         </div>
       </main>
     </>

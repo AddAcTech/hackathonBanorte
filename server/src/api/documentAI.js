@@ -15,10 +15,8 @@ async function DocumentAI(file) {
   const name = `projects/${projectId}/locations/${location}/processors/${processorId}`;
 
   // Read the file into memory.
-  //const imageFile = await fs.readFile(path);
-
-  // Convert the image data to a Buffer and base64 encode it.
-  //const encodedImage = Buffer.from(imageFile).toString('base64');
+  // const imageFile = await fs.readFile(path);
+  // const encodedImage = Buffer.from(imageFile).toString('base64');
 
   const request = {
     name,

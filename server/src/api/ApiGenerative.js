@@ -1,4 +1,4 @@
-const {VertexAI} = require('@google-cloud/vertexai');
+import {VertexAI} from '@google-cloud/vertexai';
 
 // Initialize Vertex with your Cloud project and location
 const vertex_ai = new VertexAI({project: 'gcp-banorte-hackaton-team-7', location: 'us-central1'});
@@ -33,20 +33,20 @@ const generativeModel = vertex_ai.preview.getGenerativeModel({
 });
 
 export async function generateContent(prompt) {
+  const text1 = {text: prompt}
   const req = {
     contents: [
-      {role: 'user', parts: [prompt]}
+      {role: 'user', parts: [text1]}
     ],
   };
-
   const streamingResp = await generativeModel.generateContentStream(req);
 
-  for await (const item of streamingResp.stream) {
-    process.stdout.write('stream chunk: ' + JSON.stringify(item) + '\n');
-  }
+let aggregatedText = '';
 
-  process.stdout.write('aggregated response: ' + JSON.stringify(await streamingResp.response));
-
-  return process
+for await (const item of streamingResp.stream) {
+  aggregatedText += item.candidates[0].content.parts[0].text;
 }
 
+console.log(aggregatedText);
+return aggregatedText;
+}

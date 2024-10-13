@@ -23,7 +23,6 @@ export default function Chat() {
     // Crear un FormData para enviar el archivo y datos adicionales
     const formData = new FormData();
     formData.append("file", pdfFile); // Archivo PDF
-    formData.append("additionalData", additionalData); // Agregar datos adicionales si es necesario
 
     try {
       const response = await fetch(

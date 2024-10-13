@@ -31,12 +31,11 @@ const generativeModel = vertex_ai.preview.getGenerativeModel({
     }
   ],
 });
-const pront = {text: 'Hola, ¿cómo estás?'};
 
-async function generateContent() {
+export async function generateContent(prompt) {
   const req = {
     contents: [
-      {role: 'user', parts: [pront]}
+      {role: 'user', parts: [prompt]}
     ],
   };
 
@@ -47,6 +46,7 @@ async function generateContent() {
   }
 
   process.stdout.write('aggregated response: ' + JSON.stringify(await streamingResp.response));
+
+  return process
 }
 
-generateContent();

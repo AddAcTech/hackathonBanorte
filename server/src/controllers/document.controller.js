@@ -6,8 +6,8 @@ export const processDocument = async (req, res) => {
     console.log(generateContent())
     console.log("hola")
     const processedDocument = DocumentAI()
-    res.json({
-        message: body,
+    res.status(200).json({
+        message: processDocument,
     })
 };
 

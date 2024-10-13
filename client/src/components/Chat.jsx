@@ -15,30 +15,20 @@ export default function Chat() {
     }
   };
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file); // Usamos el archivo original
-      reader.onload = () => resolve(reader.result.split(",")[1]); // Solo la parte base64
-      reader.onerror = (error) => reject(error);
-    });
-  };
-
   const handleSubmit = async () => {
     if (!pdfFile) {
-      console.log('No file selected');
+      console.log("No file selected");
       return;
     }
 
     try {
-      const base64File = await convertToBase64(pdfFile);
+      // Usamos FormData para enviar el archivo como BLOB
+      const formData = new FormData();
+      formData.append("file", pdfFile);
 
       const response = await fetch("http://localhost:3000/document", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ file: base64File }), // Enviar el archivo en base64
+        body: formData, // Enviar el archivo como FormData
       });
 
       const data = await response.json();

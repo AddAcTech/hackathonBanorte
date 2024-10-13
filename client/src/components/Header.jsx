@@ -16,7 +16,7 @@ export default function Example() {
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <a href='../public/logo.jpg' className="-m-1.5 p-1.5">
             <span className="sr-only">Banorte</span>
             <img alt="Logo Banorte" src="./logo.jpg" className="h-8 w-auto"/>
           </a>

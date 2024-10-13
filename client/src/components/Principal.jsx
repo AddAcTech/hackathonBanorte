@@ -7,31 +7,35 @@ function Principal() {
 
   return (
     <div className="mx-auto">
-      <header className="bg-banorte-red text-white p-4">
-        <h1 className="text-2xl md:text-4xl lg:text-5xl">Bienvenido User</h1>
+      <header className="p-4">
+        <h1 className="title">Bienvenido User</h1>
       </header>
       <main className="my-4">
         {/* Primer sección */}
         <section className="mb- p-4 mx-4">
-          <p className="text-base md:text-lg lg:text-xl">Saldo en cuenta: -Extraer informacion de la cuenta del usuario-</p>
+          <p className="text-base md:text-lg lg:text-xl">
+            Saldo en cuenta: -Extraer informacion de la cuenta del usuario-
+          </p>
           <div className="flex items-center text-base md:text-lg lg:text-xl">
             <span>Meta ahorro:</span>
-              <div className="ml-4 w-full md:w-1/4">
-                <ProgressBar progress={progress} />
-              </div>
+            <div className="ml-4 w-full md:w-1/4">
+              <ProgressBar progress={progress} />
+            </div>
           </div>
         </section>
         {/* Segunda sección */}
         {/* Debe ser divido en dos secciones de forma horizontal */}
-        <section className="flex">
+        <section className="flex flex-col items-center sm:items-start sm:flex-row">
           <div className="w-1/2 mb-8 p-4 mx-4 flex flex-col shadow-custom">
             {/* Contenido de la primera sub-sección */}
             <p className="text-center">Analisis Financiero</p>
             <p className="text-base md:text-lg lg:text-xl">Resumen...</p>
-            <p className="text-base md:text-lg lg:text-xl">Recomendaciones...</p>
+            <p className="text-base md:text-lg lg:text-xl">
+              Recomendaciones...
+            </p>
             <p className="text-base md:text-lg lg:text-xl">Otra info</p>
             <div className="flex justify-center mt-auto">
-              <button className="bg-banorte-red text-white p-2 rounded-lg mt-4">Realizar analisis</button>
+              <button className="main-button">Realizar analisis</button>
             </div>
           </div>
           <div className="w-1/2 mb-8 p-4 mx-4 flex flex-col shadow-custom">
@@ -48,7 +52,9 @@ function Principal() {
               </div>
             </div>
             <div className="flex justify-center mt-auto">
-              <button className="bg-banorte-red text-white p-2 rounded-lg mt-4">Continuar</button>
+              <button className="bg-banorte-red text-white p-2 rounded-lg mt-4">
+                Continuar
+              </button>
             </div>
           </div>
         </section>

@@ -32,10 +32,7 @@ export default function Chat() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data)
-        // Guardar la respuesta del servidor en el estado
         setServerResponse(data.consejo.toString()); 
-        alert(`Título: ${data.title}, Mensaje: ${data.text}`);
       } else {
         console.error("Error en la respuesta del servidor");
       }

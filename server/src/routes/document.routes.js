@@ -34,8 +34,8 @@ router.post("/document", upload.single("file"), async (req, res) => {
 
     try {
       res.status(200).json({
-        tittle: "File uploaded successfully",
-        text: response
+        title: "File uploaded successfully",
+        consejo: response
     });
     } catch (error) {
       console.error("Error uploading file:", error);

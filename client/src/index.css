@@ -6,6 +6,14 @@
   @apply bg-banorte-red text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#c0282e] transition-all ease-in-out duration-300;
 }
 
+.main-textarea {
+  @apply bg-white text-black p-2 rounded-lg border border-banorte-gray;
+}
+
+.main-input {
+  @apply bg-white text-black p-2 rounded-lg border border-banorte-gray;
+}
+
 .title {
   @apply font-semibold text-4xl;
 }

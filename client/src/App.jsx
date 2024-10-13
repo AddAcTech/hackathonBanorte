@@ -4,6 +4,7 @@ import Principal from "./components/Principal";
 import Chat from "./components/Chat";
 import Header from "./components/Header";
 import Examen from "./components/Examen";
+import LearningTask from "./components/LearningTask";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/learning" element={<Learning />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/examen" element={<Examen />} />
+          <Route path="/learningTask" element={<LearningTask />} />
         </Routes>
       </Router>
     </>

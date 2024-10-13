@@ -8,8 +8,8 @@ import Examen from "./components/Examen";
 function App() {
   return (
     <>
-      <Header />
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Principal />} />
           <Route path="/learning" element={<Learning />} />

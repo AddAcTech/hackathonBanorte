@@ -50,16 +50,16 @@ async function DocumentAI() {
   };
 
   // Read the text recognition output from the processor
-  console.log('The document contains the following paragraphs:');
   const [page1] = document.pages;
   const {paragraphs} = page1;
+  let documentText = ""
 
   for (const paragraph of paragraphs) {
     const paragraphText = getText(paragraph.layout.textAnchor);
-    console.log(`Paragraph text:\n${paragraphText}`);
+    documentText += paragraphText
   }
 
-  return document
+  return documentText
 }
 
 export default DocumentAI

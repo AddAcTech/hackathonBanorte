@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { TextField, Box } from "@mui/material";
 import Loading from "./Loading"; // Componente del spinner
 
@@ -41,6 +41,41 @@ export default function Chat() {
       if (response.ok) {
         const data = await response.json();
         setServerResponse(data.consejo.toString());
+      } else {
+        console.error("Error en la respuesta del servidor");
+      }
+    } catch (error) {
+      console.error("Error al enviar el archivo:", error);
+    } finally {
+      setLoading(false); // Ocultamos el spinner cuando termina la petición
+    }
+  };
+
+  const handleChatSubmit = async () => {
+    if (additionalData === "") {
+      console.log("No data to send");
+      return;
+    }
+
+    const requestBody = {
+      prompt: additionalData,
+    };
+
+    setLoading(true); // Activamos el spinner al iniciar la petición al servidor
+
+    try {
+      const response = await fetch("http://localhost:3000/coach", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setServerResponse(data.response); // Guardamos el valor de 'response'
+        console.log(data);
       } else {
         console.error("Error en la respuesta del servidor");
       }
@@ -129,8 +164,8 @@ export default function Chat() {
             <div className="overflow-y-scroll h-96 ">
               {serverResponse && (
                 <div className="mt-4 p-3 border border-green-300 bg-green-100 rounded-md">
-                  <h3 className="font-bold">Respuesta del servidor:</h3>
-                  <p>Título: {serverResponse}</p>
+                  {/* <h3 className="font-bold">Respuesta del servidor:</h3> */}
+                  <p>{serverResponse}</p>
                 </div>
               )}
               <Box
@@ -145,15 +180,22 @@ export default function Chat() {
               >
               </Box>
             </div>
-                <TextField
-                  id="outlined-basic"
-                  label="¿En qué puedo ayudarte?"
-                  variant="outlined"
-                  sx={{ width: "100%" }}
-                  value={additionalData}
-                  onChange={(e) => setAdditionalData(e.target.value)}
-                />
-
+            <div className="flex items-center justify-between gap-4">
+              <TextField
+                id="outlined-basic"
+                label="¿En qué puedo ayudarte?"
+                variant="outlined"
+                sx={{ width: "100%" }}
+                value={additionalData}
+                onChange={(e) => setAdditionalData(e.target.value)}
+              />
+              <button
+                className="main-button"
+                onClick={handleChatSubmit}
+              >
+                Enviar
+              </button>
+            </div>
           </div>
         )}
       </main>

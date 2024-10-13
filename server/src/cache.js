@@ -1,10 +1,10 @@
 // cache.js
 const cache = new Map();
-const CACHE_EXPIRATION_TIME = 60000; // 1 minuto
+const CACHE_EXPIRATION_TIME = 6000000; // 1 minuto
 
 function setCache(prompt, response) {
   cache.set(prompt, response);
-  setTimeout(() => cache.delete(prompt), CACHE_EXPIRATION_TIME);
+  // setTimeout(() => cache.delete(prompt), CACHE_EXPIRATION_TIME);
 }
 
 function getCache(prompt) {

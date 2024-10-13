@@ -32,8 +32,9 @@ export default function Chat() {
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data)
         // Guardar la respuesta del servidor en el estado
-        setServerResponse(data); 
+        setServerResponse(data.consejo.toString()); 
         alert(`Título: ${data.title}, Mensaje: ${data.text}`);
       } else {
         console.error("Error en la respuesta del servidor");
@@ -123,8 +124,7 @@ export default function Chat() {
           {serverResponse && (
             <div className="mt-4 p-3 border border-green-300 bg-green-100 rounded-md">
               <h3 className="font-bold">Respuesta del servidor:</h3>
-              <p>Título: {serverResponse.title}</p>
-              <p>Mensaje: {serverResponse.text}</p>
+              <p>Título: {serverResponse}</p>
             </div>
           )}
         </div>

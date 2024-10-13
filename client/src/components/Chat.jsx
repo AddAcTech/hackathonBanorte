@@ -53,7 +53,7 @@ export default function Chat() {
 
   return (
     <>
-      <main className="max-w-7xl mx-auto py-20 grid md:grid-cols-2 gap-8">
+      <main className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
         {pdfFileUrl === null ? (
           <div className="flex flex-col items-center justify-center p-5">
             <label
@@ -122,7 +122,7 @@ export default function Chat() {
             <p>Es necesario subir un PDF para recibir una respuesta</p>
           </div>
         ) : (
-          <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-6 md:max-w-full mx-auto max-w-full  overflow-y-scroll">
+          <div className="p-5 rounded-lg space-y-6 md:max-w-full mx-auto overflow-y-scroll">
             <h2 className="text-2xl font-bold text-gray-800">Chat</h2>
             <Box
               component="form"

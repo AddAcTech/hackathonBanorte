@@ -122,7 +122,7 @@ export default function Chat() {
             <p>Es necesario subir un PDF para recibir una respuesta</p>
           </div>
         ) : (
-          <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-6 md:max-w-full mx-auto max-w-full">
+          <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-6 md:max-w-full mx-auto max-w-full  overflow-y-scroll">
             <h2 className="text-2xl font-bold text-gray-800">Chat</h2>
             <Box
               component="form"

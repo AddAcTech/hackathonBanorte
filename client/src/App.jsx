@@ -5,6 +5,7 @@ import Chat from "./components/Chat";
 import Header from "./components/Header";
 import Examen from "./components/Examen";
 import LearningTask from "./components/LearningTask";
+import ExpenseController from "./components/ExpenseController";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/chat" element={<Chat />} />
           <Route path="/examen" element={<Examen />} />
           <Route path="/learningTask" element={<LearningTask />} />
+          <Route path="/expenseController" element={<ExpenseController />} />
         </Routes>
       </Router>
     </>

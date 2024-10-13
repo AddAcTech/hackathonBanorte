@@ -4,7 +4,8 @@ import { TextField, Box } from "@mui/material";
 export default function Chat() {
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfFileUrl, setPdfFileUrl] = useState(null); // Para mostrar el PDF
-  const [additionalData, setAdditionalData] = useState(""); // Por si tienes datos adicionales
+  const [additionalData, setAdditionalData] = useState(""); // Para los datos adicionales
+  const [isTextFieldEnabled, setIsTextFieldEnabled] = useState(false); // Controla si el TextField está habilitado
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -19,6 +20,7 @@ export default function Chat() {
       console.log("No file selected");
       return;
     }
+    setIsTextFieldEnabled(true)
 
     // Crear un FormData para enviar el archivo y datos adicionales
     const formData = new FormData();
@@ -26,22 +28,16 @@ export default function Chat() {
     formData.append("additionalData", additionalData); // Agregar datos adicionales si es necesario
 
     try {
-      const response = await fetch(
-        "http://localhost:3000/document",
-        {
-          method: "POST",
-          body: formData,
-           // Enviamos el FormData directamente
-          // No es necesario agregar headers como "Content-Type": "multipart/form-data", fetch lo maneja automáticamente.
-        }
-      );
+      const response = await fetch("http://localhost:3000/document", {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         const data = await response.json();
-        // Manejar la respuesta exitosa del servidor
         console.log(data);
-        // Mostrar mensaje (similitud con axios .then)
         alert(`Título: ${data.title}, Mensaje: ${data.text}`);
+        setIsTextFieldEnabled(true); // Habilitar el TextField cuando se envíe el archivo con éxito
       } else {
         console.error("Error en la respuesta del servidor");
       }
@@ -92,6 +88,7 @@ export default function Chat() {
                 onClick={() => {
                   setPdfFile(null);
                   setPdfFileUrl(null);
+                  setIsTextFieldEnabled(false);
                 }}
               >
                 Cancelar
@@ -105,25 +102,35 @@ export default function Chat() {
             </div>
           </div>
         )}
-        <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-6 max-w-lg md:max-w-full mx-auto">
+
+        <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-6 w-full">
           <h2 className="text-2xl font-bold text-gray-800">Chat</h2>
+          
+          {/* Texto mostrado antes de la validación */}
+          {!isTextFieldEnabled && (
+            <p className="text-gray-500">
+              Para continuar, sube un archivo PDF y haz clic en "Enviar" para habilitar el chat.
+            </p>
+          )}
+          
           <Box
             component="form"
             sx={{
               display: "flex",
               alignItems: "center",
-              "& > :not(style)": { m: 1 },
+              "& > :not(style)": { m: 1, width: "100%" },
             }}
             noValidate
             autoComplete="off"
           >
             <TextField
               id="outlined-basic"
-              label="Datos adicionales (si es necesario)"
+              label="¿En qué puedo ayudarte?"
               variant="outlined"
-              sx={{ width: "65ch" }}
+              fullWidth
               value={additionalData}
               onChange={(e) => setAdditionalData(e.target.value)}
+              disabled={!isTextFieldEnabled} 
             />
           </Box>
         </div>

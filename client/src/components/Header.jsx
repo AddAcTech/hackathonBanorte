@@ -29,16 +29,16 @@ export default function Example() {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <a
-            href="/learning"
-            className="text-sm font-bold leading-6 text-white hover:text-black uppercase"
-          >
-            Mi aprendizaje
-          </a>
-          <a
             href="/chat"
             className="text-sm font-bold leading-6 text-white hover:text-black uppercase"
           >
             Organiza tus finanzas
+          </a>
+          <a
+            href="/learning"
+            className="text-sm font-bold leading-6 text-white hover:text-black uppercase"
+          >
+            Mi aprendizaje
           </a>
         </PopoverGroup>
         {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -72,16 +72,16 @@ export default function Example() {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 <a
-                  href="/learningTask"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200 uppercase"
-                >
-                  Mi apendizaje
-                </a>
-                <a
-                  href="/Chat"
+                  href="/chat"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200 uppercase"
                 >
                   Organiza tus finanzas
+                </a>
+                <a
+                  href="/learning"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200 uppercase"
+                >
+                  Mi apendizaje
                 </a>
               </div>
             </div>

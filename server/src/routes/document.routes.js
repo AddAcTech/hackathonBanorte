@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { response, Router } from "express";
 import multer from "multer";
 import path from "path";
 import { promises as fs } from "fs";
@@ -34,8 +34,8 @@ router.post("/document", upload.single("file"), async (req, res) => {
 
     try {
       res.status(200).json({
-        tittle: "File uploaded successfully",
-        text: response
+        title: "File uploaded successfully",
+        consejo: response
     });
     } catch (error) {
       console.error("Error uploading file:", error);

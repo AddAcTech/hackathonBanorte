@@ -2,27 +2,20 @@
  * TODO(developer): Uncomment these variables before running the sample.
 */
 
-const projectId = 'YOUR_PROJECT_ID';
-const location = 'YOUR_PROJECT_LOCATION'; // Format is 'us' or 'eu'
-const processorId = 'YOUR_PROCESSOR_ID'; // Create processor in Cloud Console
-const filePath = '/path/to/local/pdf';
+const projectId = '220088580382';
+const location = 'us'; // Format is 'us' or 'eu'
+const processorId = '3ba072cd17f04d76'; // Create processor in Cloud Console
+const filePath = './src/api/tona_estado.pdf'
 
-const {DocumentProcessorServiceClient} =
-  require('@google-cloud/documentai').v1;
+import {DocumentProcessorServiceClient} from "@google-cloud/documentai"
+import {promises as fs} from 'fs'
 
-// Instantiates a client
-// apiEndpoint regions available: eu-documentai.googleapis.com, us-documentai.googleapis.com (Required if using eu based processor)
-// const client = new DocumentProcessorServiceClient({apiEndpoint: 'eu-documentai.googleapis.com'});
 const client = new DocumentProcessorServiceClient();
 
-async function DocumentAI(file) {
-  // The full resource name of the processor, e.g.:
-  // projects/project-id/locations/location/processor/processor-id
-  // You must create new processors in the Cloud Console first
+async function DocumentAI() {
   const name = `projects/${projectId}/locations/${location}/processors/${processorId}`;
 
   // Read the file into memory.
-  const fs = require('fs').promises;
   const imageFile = await fs.readFile(filePath);
 
   // Convert the image data to a Buffer and base64 encode it.
@@ -66,6 +59,7 @@ async function DocumentAI(file) {
     console.log(`Paragraph text:\n${paragraphText}`);
   }
 
+  return document
 }
 
 export default DocumentAI

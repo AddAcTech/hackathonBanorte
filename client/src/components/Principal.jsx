@@ -1,7 +1,5 @@
-import React from "react";
 import ProgressBar from "./ProgresBar";
 import { PDFDownloadLink, Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
-import marked from "marked";
 
 function Principal() {
   // - Debe extraer el progreso realtivo a la meta de ahorro del usuario

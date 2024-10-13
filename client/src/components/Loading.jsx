@@ -1,4 +1,3 @@
-import React from "react";
 import loadingGif from "../assets/loader.gif";
 
 function Loading() {

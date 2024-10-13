@@ -16,9 +16,13 @@ export default function Example() {
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <a href='../public/logo.jpg' className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Banorte</span>
-            <img alt="Logo Banorte" src="./logo.jpg" className="h-8 w-auto"/>
+            <img
+              alt="Logo Banorte"
+              src="./public/logo.png"
+              className="h-8 w-auto"
+            />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -34,22 +38,22 @@ export default function Example() {
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <a
             href="/"
-            className="text-sm font-semibold leading-6 text-white hover:text-black uppercase"
+            className="text-sm font-bold leading-6 text-white hover:text-black uppercase"
           >
             Mi aprendizaje
           </a>
           <a
             href="/chat"
-            className="text-sm font-semibold leading-6 text-white hover:text-black uppercase"
+            className="text-sm font-bold leading-6 text-white hover:text-black uppercase"
           >
             Organiza tus finanzas
           </a>
         </PopoverGroup>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" className="text-sm font-semibold leading-6 text-white">
             Log in <span aria-hidden="true">&rarr;</span>
           </a>
-        </div>
+        </div> */}
       </nav>
       <Dialog
         open={mobileMenuOpen}
@@ -77,35 +81,20 @@ export default function Example() {
               <div className="space-y-2 py-6">
                 <a
                   href="/"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200"
-                >
-                  Clases
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200 uppercase"
+                > 
                 </a>
                 <a
                   href="/chat"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200 uppercase"
                 >
-                  Chat
+                  Mi apendizaje
                 </a>
                 <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200"
+                  href="/learningTask"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200 uppercase"
                 >
-                  Marketplace
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200"
-                >
-                  Company
-                </a>
-              </div>
-              <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-200"
-                >
-                  Log in
+                  Organiza tus finanzas 
                 </a>
               </div>
             </div>

@@ -1,11 +1,9 @@
+import { Box, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { TextField, Box } from "@mui/material";
-import { Button } from "@headlessui/react";
 
 export default function Chat() {
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfFileUrl, setPdfFileUrl] = useState(null); // Para mostrar el PDF
-  const [chat, setChat] = useState("");
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -15,20 +13,30 @@ export default function Chat() {
     }
   };
 
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file); // Usamos el archivo original
+      reader.onload = () => resolve(reader.result.split(",")[1]); // Solo la parte base64
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
   const handleSubmit = async () => {
     if (!pdfFile) {
-      console.log("No file selected");
+      console.log('No file selected');
       return;
     }
 
     try {
-      // Usamos FormData para enviar el archivo como BLOB
-      const formData = new FormData();
-      formData.append("file", pdfFile);
+      const base64File = await convertToBase64(pdfFile);
 
       const response = await fetch("http://localhost:3000/document", {
         method: "POST",
-        body: formData, // Enviar el archivo como FormData
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ file: base64File }), // Enviar el archivo en base64
       });
 
       const data = await response.json();

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TextField, Box } from "@mui/material";
-import Loading from "./Loading"; // Componente del spinner
+import Loading from "./Loading"; // Componente para spinner
 
 export default function Chat() {
   const [pdfFile, setPdfFile] = useState(null);
